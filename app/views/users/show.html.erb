@@ -3,8 +3,10 @@
     <section class="user_info">
       <h1>
         <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>
+        <%= @user.name %></h1>
+        <h2><%= link_to "フォロー",:controller => "users", :action => "followings" %>(<%= @following.count %>)<br>
+        <%= link_to "フォロワー",:controller => "users", :action => "followers" %>(<%= @follower.count %>)
+      </h2>
       </section>
      <section class="user_description">
     <div class="panel panel-default">
