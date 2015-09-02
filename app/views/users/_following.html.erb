@@ -1,0 +1,14 @@
+<% following.each do |f| %>
+<div class="panel panel-default">
+    <div class="panel-body">
+    <h2><%= gravatar_for f %>
+ <div class="name">
+     <%= f.name %>
+     <div class="follow-btn"><%= render 'follow_form' if logged_in? %></div></div></h2>
+<div class="description"><%= f.description %></div>
+<% if f.location.nil? %>
+ <% else %>
+<div class="panel-footer">Location:<%= f.location %></div>
+<% end %>
+</div></div>
+<% end %>
