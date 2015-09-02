@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only:[:show,:edit,:update,:followings,:followers]
   
   def show
-      @microposts = @user.microposts
+      @microposts = @user.microposts.page params[:page]
       @following = @user.following_users
       @follower = @user.follower_users
   end
