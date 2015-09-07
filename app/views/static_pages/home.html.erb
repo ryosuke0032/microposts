@@ -5,9 +5,9 @@
         <%= render 'shared/user_info' %>
       </section>
        
-       <%= link_to "フォロー( " + @following.count.to_s + " )",:controller => "users", :action => "followings", id:current_user %><br>
-        <%= link_to "フォロワー( " + @follower.count.to_s + " )",:controller => "users", :action => "followers", id:current_user %>
-        
+       <%= link_to "フォロー( " + @following.count.to_s + " )",followings_user_path(current_user) %><br>
+       <%= link_to "フォロワー( " + @follower.count.to_s + " )",followers_user_path(current_user) %><br>
+       <%= link_to "Favorite( " + @favorite.count.to_s + " )",favorites_user_path(current_user) %><br>
       <section class="micropost_form">
         <%= render 'shared/micropost_form' %>
       </section>

@@ -18,6 +18,13 @@ class User < ActiveRecord::Base
                                     dependent:   :destroy
   has_many :follower_users, through: :follower_relationships, source: :follower
   
+  has_many :favoritelist, class_name:  "Favorite",
+                                     foreign_key: "favoriter_id",
+                                     dependent:   :destroy
+                                     
+  has_many :favorite_microposts, through: :favoritelist, source: :favoritepost
+  
+  mount_uploader :avatar, AvatarUploader
     # 他のユーザーをフォローする
   def follow(other_user)
     following_relationships.create(followed_id: other_user.id)
@@ -37,5 +44,17 @@ class User < ActiveRecord::Base
     Micropost.where(user_id: following_user_ids + [self.id])
   end
   
+  #お気に入りに登録する
+  def favorite(other_post)
+    favoritelist.create(favoritepost_id: other_post.id )
+  end
+  
+  def unfavorite(other_post)
+    favoritelist.find_by(favoritepost_id: other_post.id).destroy
+  end
+  
+  def favorite?(other_post)
+    favorite_microposts.include?(other_post)
+  end
   
 end

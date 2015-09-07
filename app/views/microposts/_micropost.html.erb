@@ -1,12 +1,49 @@
 <li id="micropost-<%= micropost.id %>">
+ <% if micropost.origin.blank? %>
  <%= link_to gravatar_for(micropost.user, size: 50),micropost.user %>
  <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
- <span class="content"><%= micropost.content %></span>
+ <span class="content"><%= micropost.content %>
+ <% if micropost.image? %>
+ 　　<span class="img"> 
+    <%= image_tag micropost.image.url %>
+    </span>
+    <% end %></span>
  <span class="timestamp">
   Posted <%= time_ago_in_words(micropost.created_at) %> ago.
+ </span>
   <% if current_user == micropost.user %>
+   <span class="label label-danger">
+     <%= link_to "delete", micropost, method: :delete,
+                                       data: { confirm: "You sure?" } %>
+    </span>                              
+   <% else %>
+    <span class="label label-info">   
+     <%= link_to "Retweet", retweet_micropost_path(micropost) %>
+    </span>
+   <% end %>
+  <% else %>
+   <%= link_to gravatar_for(micropost.origin.user, size: 50),micropost.origin.user %>
+   <span class="user"><%= link_to micropost.origin.user.name, micropost.origin.user %></span>
+   <span class="content"><%= micropost.content %>
+   <% if micropost.origin.image? %>
+ 　　<span class="img"> 
+    <%= image_tag micropost.origin.image.url %>
+    </span>
+    <% end %></span>
+   <span class="timestamp">
+    Posted <%= time_ago_in_words(micropost.created_at) %> ago.
+   </span>
+    Retweeted from <%= micropost.origin.user.name %>.
+   <span class="label label-danger">
       <%= link_to "delete", micropost, method: :delete,
                                        data: { confirm: "You sure?" } %>
-    <% end %>
-  </span>
+   </span>
+  <% end %>
+  <% if current_user.favorite?(micropost) %>
+  <span class="label label-default">
+  <%= link_to "Favorite", unfavorite_micropost_path(micropost), method: :delete %></span>
+  <% else %>
+  <span class="label label-warning">   
+  <%= link_to "Favorite", favorite_micropost_path(micropost) %></span>
+  <% end %>
  </li>

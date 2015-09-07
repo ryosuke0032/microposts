@@ -5,14 +5,28 @@ Rails.application.routes.draw do
   get 'login' =>'sessions#new'
   post 'login' =>'sessions#create'
   delete 'logout' =>'sessions#destroy'
-  get 'users/:id/followings' =>'users#followings'
-  get 'users/:id/followers' =>'users#followers'
   
-  resources :users
+  resources :users do
+    member do
+      get :followings
+      get :followers
+      get :favorites
+    end
+  end
+  
   resources :sessions, only: [:new,:create,:destroy]
-  resources :microposts
+  resources :microposts do
+    member do
+      get :favorite
+      delete :unfavorite
+    end
+  end
   resources :relationships, only: [:create,:destroy]
-  
+  resources :microposts do
+    member do
+      get :retweet
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

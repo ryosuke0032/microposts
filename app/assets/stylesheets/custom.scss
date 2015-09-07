@@ -156,6 +156,11 @@ aside {
   margin-top: 15px;
 }
 
+.thumbnail{
+   float: left;
+  margin-right: 10px;
+  
+}
 /* microposts */
 
 .microposts {
@@ -179,13 +184,20 @@ aside {
   }
   .timestamp {
     color: $gray-light;
-    display: block;
-    margin-left: 60px;
+    display: inline;
+    float: left;
+    margin-left: 0px;
   }
   .gravatar {
     float: left;
     margin-right: 10px;
     margin-top: 5px;
+  }
+  
+  .label{
+    a{
+  color: #ffffff;
+  }
   }
 }
 

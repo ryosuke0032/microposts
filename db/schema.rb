@@ -11,15 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150830100512) do
+ActiveRecord::Schema.define(version: 20150906094323) do
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer  "favoriter_id"
+    t.integer  "favoritepost_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "favorites", ["favoritepost_id"], name: "index_favorites_on_favoritepost_id"
+  add_index "favorites", ["favoriter_id", "favoritepost_id"], name: "index_favorites_on_favoriter_id_and_favoritepost_id", unique: true
+  add_index "favorites", ["favoriter_id"], name: "index_favorites_on_favoriter_id"
 
   create_table "microposts", force: :cascade do |t|
     t.integer  "user_id"
     t.text     "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "origin_id"
+    t.string   "image"
   end
 
+  add_index "microposts", ["origin_id"], name: "index_microposts_on_origin_id"
   add_index "microposts", ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
   add_index "microposts", ["user_id"], name: "index_microposts_on_user_id"
 
@@ -42,6 +56,7 @@ ActiveRecord::Schema.define(version: 20150830100512) do
     t.datetime "updated_at",      null: false
     t.string   "description"
     t.string   "location"
+    t.string   "avatar"
   end
 
 end

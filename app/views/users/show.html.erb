@@ -2,6 +2,11 @@
   <aside class="col-md-4">
     <section class="user_info">
       <h1>
+      <% if @user.avatar? %>
+    <div class="thumbnail">
+      <%= image_tag @user.avatar.url %>
+    </div>
+  <% end %>
         <%= gravatar_for @user %>
         <%= @user.name %></h1>
         <h2><%= link_to "フォロー( " + @following.count.to_s + " )",:controller => "users", :action => "followings" %><br>

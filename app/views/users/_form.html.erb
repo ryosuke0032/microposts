@@ -1,7 +1,11 @@
   <%= form_for(@user) do |f| %>
   
    <%= render 'shared/error_messages', object: f.object %> <!-- ここを追加 -->
-
+   
+  <%= image_tag @user.avatar.url if @user.avatar %>
+  <%= f.label :avatar %>
+  <%= f.file_field :avatar %>
+  
    <%= f.label :name %>
    <%= f.text_field :name %>
    
