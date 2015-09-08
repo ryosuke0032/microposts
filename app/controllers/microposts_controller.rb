@@ -11,7 +11,7 @@ class MicropostsController < ApplicationController
       @following = current_user.following_users
       @follower = current_user.follower_users
       @favorite = current_user.favorite_microposts
-   render 'static_pages/home'
+      render 'static_pages/home'
   end
  end
 

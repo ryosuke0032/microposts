@@ -1,5 +1,6 @@
 class AddOriginToMicropost < ActiveRecord::Migration
   def change
-    add_reference :microposts, :origin, index: true, foreign_key: true
+    add_column :microposts, :origin_id, :integer
+    add_index :microposts, :origin_id
   end
 end
