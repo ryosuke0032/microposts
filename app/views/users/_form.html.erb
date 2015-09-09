@@ -24,9 +24,12 @@
    <%= f.label :location %>
    <%= f.text_field :location %>
    
-   <% if params[:action] == 'new' %>
+   <% if params[:action] == 'new' or 'create' %>
     <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
     <% elsif params[:action] == 'edit' %>
     <%= f.submit "Update my account", class: "btn btn-large btn-primary" %>
+    <% else %>
+     <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
    <% end %>
   <% end %>
+  <%= para
