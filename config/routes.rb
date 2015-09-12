@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new,:create,:destroy]
   resources :microposts do
     member do
-      get :favorite
+      post :favorite
       delete :unfavorite
     end
   end

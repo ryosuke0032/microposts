@@ -38,13 +38,13 @@ class MicropostsController < ApplicationController
   def favorite
     @micropost = Micropost.find(params[:id])
     current_user.favorite(@micropost)
-    redirect_to (:back)
+    render 'microposts/favorite.js.erb'
   end
 
   def unfavorite
     @micropost = current_user.favorite_microposts.find(params[:id])
     current_user.unfavorite(@micropost)
-    redirect_to (:back)
+    render 'microposts/unfavorite.js.erb'
   end
   
   

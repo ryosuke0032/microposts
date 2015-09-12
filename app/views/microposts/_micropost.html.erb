@@ -40,10 +40,8 @@
    </span>
   <% end %>
   <% if current_user.favorite?(micropost) %>
-  <span class="label label-default">
-  <%= link_to "Favorite", unfavorite_micropost_path(micropost), method: :delete %></span>
+   <%= render 'users/unfavorite', mm: micropost %>
   <% else %>
-  <span class="label label-warning">   
-  <%= link_to "Favorite", favorite_micropost_path(micropost) %></span>
+   <%= render 'users/favorite', mm: micropost %>
   <% end %>
  </li>
