@@ -7,7 +7,9 @@
        
        <%= link_to "フォロー( " + @following.count.to_s + " )",followings_user_path(current_user) %><br>
        <%= link_to "フォロワー( " + @follower.count.to_s + " )",followers_user_path(current_user) %><br>
-       <%= link_to "Favorite( " + @favorite.count.to_s + " )",favorites_user_path(current_user) %><br>
+       <span id="count">
+       <%= link_to "Favorite( <span id='fav_count'>".html_safe + @favorite.count.to_s + "</span> )".html_safe,favorites_user_path(current_user),data: {remote: true} %><br>
+       </span>
       <section class="micropost_form">
         <%= render 'shared/micropost_form' %>
       </section>

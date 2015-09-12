@@ -1,1 +1,2 @@
 $("#unfavorite_link_<%= @micropost.id %>").replaceWith("<%= escape_javascript(render('users/favorite', mm: @micropost)) %>");
+$("#fav_count").html("<%= @favorite.count %>");
